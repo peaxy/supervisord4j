@@ -17,6 +17,8 @@ public abstract class SupervisordException extends Exception {
         switch (code) {
             case UNKNOWN_METHOD:
                 return new UnknownMethodException();
+            case BAD_NAME:
+                return new BadNameException();
             case ALREADY_STARTED:
                 return new AlreadyStartedException();
             case NOT_RUNNING:
@@ -27,14 +29,19 @@ public abstract class SupervisordException extends Exception {
     }
 
     public static class UnknownMethodException extends SupervisordException {
-        public UnknownMethodException(){
+        public UnknownMethodException() {
             super(Code.UNKNOWN_METHOD);
         }
     }
-    public static class AlreadyStartedException extends SupervisordException {
-        public AlreadyStartedException() {
-            super(Code.ALREADY_STARTED);
+
+    public static class BadNameException extends SupervisordException {
+        public BadNameException() {
+            super(Code.UNKNOWN_METHOD);
         }
+    }
+
+    public static class AlreadyStartedException extends SupervisordException {
+        public AlreadyStartedException() { super(Code.ALREADY_STARTED); }
     }
 
     public static class NotRunningException extends SupervisordException {
@@ -49,6 +56,7 @@ public abstract class SupervisordException extends Exception {
          * Returned on a start request for a process that is already started
          */
         UNKNOWN_METHOD(1),
+        BAD_NAME(10),
         ALREADY_STARTED(60),
         NOT_RUNNING(70);
 

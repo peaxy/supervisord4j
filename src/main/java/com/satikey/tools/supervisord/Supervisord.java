@@ -244,9 +244,9 @@ public class Supervisord {
      * @param waitToStop wait Wait for each process to be fully stopped
      * @return array result An array of process status info structs
      */
-    public Object stopProcessGroup(String groupName, boolean waitToStop)
+    public Object[] stopProcessGroup(String groupName, boolean waitToStop)
             throws SupervisordException {
-        return new SimpleXMLRPC().call(buildFullMethodCall(Constants._STOP_PROCESSES_GROUP), groupName, waitToStop);
+        return (Object[]) new SimpleXMLRPC().call(buildFullMethodCall(Constants._STOP_PROCESSES_GROUP), groupName, waitToStop);
     }
 
     /**
